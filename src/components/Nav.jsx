@@ -28,6 +28,7 @@ const navbarstyles = {
         <li><Link>About us</Link></li>
         <li><Link to='/contactus'> Contact Us</Link></li>
         <li><Link to='/productos'> Products</Link></li>
+        <li><Link to='/login'> Login </Link></li>
         <li>Cart: {cartCount}</li>
         <li className='cartNav'>
           <button className='btnCart' onClick={() => setCartOpen(true)}><i className="fa-solid fa-cart-shopping"></i></button>

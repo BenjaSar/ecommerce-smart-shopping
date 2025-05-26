@@ -3,9 +3,11 @@ import './App.css'
 import Home from "./layout/Home";
 import ContactPage from "./layout/ContactPage"
 import React, {useState, useEffect} from "react";
-import ProductList from './components/ProductList';
 import NotFound from './components/NotFound'
 import ProductGallery from './layout/ProductGallery'
+import PrivateRoutes from './auth/PrivateRoutes';
+import Login from './layout/Login';
+import Admin from './layout/Admin';
 //``
 
 //Array de productos
@@ -17,6 +19,8 @@ function App() {
   const [carga, setCarga] = useState(true)  // state of charging
   const [error, setError] = useState(false) // state of error
   const [isCartOpen, setCartOpen] = useState(false);
+  const [isAuthenticated, setIsAuth] = useState(false)
+  
 
   const handleAddToCart =(product)=>{
     const productExist = cart.find(item => item.id === product.id)
@@ -83,7 +87,8 @@ function App() {
                 addToCart={handleAddToCart} 
                 isCartOpen={isCartOpen} 
                 setCartOpen={setCartOpen} 
-                borrarProducto={borrarProducto}/>}/>
+                borrarProducto={borrarProducto}
+                />}/>
       <Route
             path="/productos"
             element={
@@ -102,6 +107,15 @@ function App() {
             path='/contactus' 
             element={
             <ContactPage/>}
+            />      
+      <Route 
+            path='/login' 
+            element={<Login/>}  />
+      <Route 
+            path='/admin' 
+            element={
+            <PrivateRoutes isAuthenticated={isAuthenticated}> <Admin /> 
+            </PrivateRoutes>} 
             />
       <Route path='*' element={<NotFound/>}/>
     </Routes>

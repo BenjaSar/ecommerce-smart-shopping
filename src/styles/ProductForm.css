@@ -1,0 +1,23 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

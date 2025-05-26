@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "../styles/ContactForm.css"
+import "../styles/ContactForm.css";
 import smartshopLogo from '../assets/smartshop.svg'; 
 
 export default function ContactForm() {

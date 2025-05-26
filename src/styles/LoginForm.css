@@ -1,0 +1,133 @@
+:root {
+  --color-primary: #008080; /* teal */
+  --color-primary-hover: #006d6d;
+  --color-error: #dc3545;
+  --color-border: #ced4da;
+  --color-background: #f8f9fa;
+  --color-text: #212529;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --transition: all 0.2s ease-in-out;
+}
+
+/** {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}*/
+
+body {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+/* Form container */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Form box */
+.form-box {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: var(--border-radius-md);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.form-box:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Form title */
+.form-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(0, 128, 128, 0.2);
+}
+
+/* Error message */
+.error {
+  color: var(--color-error);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Submit button */
+.submit-button {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.submit-button:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.submit-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .form-box {
+    padding: 1.5rem;
+  }
+  
+  .form-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+}
