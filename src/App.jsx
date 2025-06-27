@@ -2,15 +2,21 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import Home from "./layout/Home";
 import ContactPage from "./layout/ContactPage"
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import ProductList from './components/ProductList';
-import NotFound from './components/NotFound'
+import NotFound from './layout/NotFound'
 import ProductGallery from './layout/ProductGallery'
+import Login from './layout/Login';
+import { CartContext } from './context/CartContext';
+import ProtectedPath from './auth/ProtectedPath';
+import Admin from './layout/Admin';
 //``
 
 //Array de productos
 
 function App() {
+
+  const {isAuthenticated} = useContext(CartContext)
 
   const [products,setProducts] = useState([])
   const [cart, setCart] = useState([])
@@ -102,6 +108,19 @@ function App() {
             path='/contactus' 
             element={
             <ContactPage/>}
+            />
+      
+      
+      <Route
+            path='/admin' 
+            element={
+            <ProtectedPath isAuthenticated = {isAuthenticated}> <Admin/> </ProtectedPath>}
+          />
+      <Route
+            path='/login'
+            element={
+              <Login/>
+            }
             />
       <Route path='*' element={<NotFound/>}/>
     </Routes>

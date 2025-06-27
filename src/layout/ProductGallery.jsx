@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../components/Header'
+import Header from '../components/statics/Header'
 import Nav from '../components/Nav'
-import Footer from '../components/Footer'
+import Footer from '../components/statics/Footer'
 import Product from '../components/Product'
 
 const ProductGallery = ({products,cart, isCartOpen,setCartOpen,borrarProducto, vaciarCarrito, addToCart }) => {

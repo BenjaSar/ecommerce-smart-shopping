@@ -1,7 +1,7 @@
 import ContactForm from "../components/ContactForm";
-import Header from "../components/Header";
+import Header from "../components/statics/Header";
 import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import Footer from "../components/statics/Footer";
 import "../styles/ContactForm.css"
 
 const  ContactPage = ({cart =[], isCartOpen,setCartOpen,borrarProducto, vaciarCarrito})=>{
@@ -19,4 +19,4 @@ const  ContactPage = ({cart =[], isCartOpen,setCartOpen,borrarProducto, vaciarCa
         </>
     )
 }
-export default ContactPage
+export default ContactPage;
