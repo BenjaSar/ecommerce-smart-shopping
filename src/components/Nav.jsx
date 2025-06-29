@@ -24,6 +24,7 @@ const navbarstyles = {
   return (
     <nav style={navbarstyles}>
       <ul>
+        <li><Link to='/login'>Login</Link></li>
         <li><Link to='/'>Home</Link></li>
         <li><Link>About us</Link></li>
         <li><Link to='/contactus'> Contact Us</Link></li>

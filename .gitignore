@@ -33,3 +33,10 @@ node_modules/
 
 # build
 **/build
+
+
+# Data and sensitive files
+public/data/
+*.log
+.env
+.env.*

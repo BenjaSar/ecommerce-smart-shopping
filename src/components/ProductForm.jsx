@@ -30,7 +30,6 @@ const ProductForm = ({ onAgregar }) => {
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-
   };
 
   const handleSubmit = (e) => {
@@ -69,8 +68,8 @@ const ProductForm = ({ onAgregar }) => {
       </div>
       <div>
         <label>Description:</label>
-        <input
-          type="descripcion"
+        <textarea
+          name="description"
           value={product.description}
           onChange={handleChange}
           required
@@ -79,7 +78,7 @@ const ProductForm = ({ onAgregar }) => {
           <p style={{ color: "red" }}>{error.description}</p>
         )}
       </div>
-      <button type="submit" class="btn btn-success">
+      <button type="submit" className="btn btn-success">
           Add Product
       </button>
     </form>

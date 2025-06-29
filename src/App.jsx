@@ -10,6 +10,7 @@ import Login from './layout/Login';
 import { CartContext } from './context/CartContext';
 import ProtectedPath from './auth/ProtectedPath';
 import Admin from './layout/Admin';
+import DetailsProduct from './components/DetailsProduct';
 //``
 
 //Array de productos
@@ -60,7 +61,6 @@ function App() {
       fetch("https://68209f05259dad2655ad17fd.mockapi.io/api/v1/productos")
       .then((respuesta) => respuesta.json())
       .then((datos) => {
-        console.log(datos);
         setProducts(datos);
         setCarga(false);
       })
@@ -78,7 +78,7 @@ function App() {
   <Router>
     <Routes>
       <Route 
-            path='/' 
+            path="/" 
             element={
               <Home 
                 error = {error} 
@@ -104,24 +104,33 @@ function App() {
               />
             }
           />
+
+      <Route
+            path="/productos/:id"
+            element={
+              <DetailsProduct
+                cart={cart}
+                products={products}
+              />
+            }
+          />    
       <Route 
-            path='/contactus' 
+            path="/contactus" 
             element={
             <ContactPage/>}
             />
       
-      
       <Route
-            path='/admin' 
-            element={
-            <ProtectedPath isAuthenticated = {isAuthenticated}> <Admin/> </ProtectedPath>}
-          />
-      <Route
-            path='/login'
+            path="/login"
             element={
               <Login/>
             }
             />
+      <Route
+            path="/admin" 
+            element={
+            <ProtectedPath isAuthenticated = {isAuthenticated}> <Admin/> </ProtectedPath>}
+          />
       <Route path='*' element={<NotFound/>}/>
     </Routes>
   </Router>   
