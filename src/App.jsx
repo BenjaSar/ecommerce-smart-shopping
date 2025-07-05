@@ -1,141 +1,77 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 import Home from "./layout/Home";
-import ContactPage from "./layout/ContactPage"
-import React, {useState, useEffect, useContext} from "react";
-import ProductList from './components/ProductList';
-import NotFound from './layout/NotFound'
-import ProductGallery from './layout/ProductGallery'
-import Login from './layout/Login';
-import { CartContext } from './context/CartContext';
-import ProtectedPath from './auth/ProtectedPath';
-import Admin from './layout/Admin';
-import DetailsProduct from './components/DetailsProduct';
+import ContactPage from "./layout/ContactPage";
+import React, { useState, useEffect, useContext } from "react";
+import ProductList from "./components/ProductList";
+import NotFound from "./layout/NotFound";
+import ProductGallery from "./layout/ProductGallery";
+import Login from "./layout/Login";
+import { CartContext } from "./context/CartContext";
+import { AdminContext } from "./context/AdminContext";
+import ProtectedPath from "./auth/ProtectedPath";
+import Admin from "./layout/Admin";
+import DetailsProduct from "./components/DetailsProduct";
 //``
 
 //Array de productos
 
 function App() {
-
-  const {isAuthenticated} = useContext(CartContext)
-
-  const [products,setProducts] = useState([])
-  const [cart, setCart] = useState([])
-  const [carga, setCarga] = useState(true)  // state of charging
-  const [error, setError] = useState(false) // state of error
+  const {
+    products,
+    carga,
+    error,
+    handleAddToCart,
+    vaciarCarrito,
+    handleDeleteFromCart,
+    isAuthenticated,
+  } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
 
-  const handleAddToCart =(product)=>{
-    const productExist = cart.find(item => item.id === product.id)
-
-    if(productExist){
-      setCart(cart.map((item) => item.id === product.id ? {...item, cantidad:item.cantidad+1}: item ))
-    }else{
-      setCart([...cart,product ])
-    }
-  }
-
-  const borrarProducto=(product)=>{
-    setCart(preVCart =>{
-      return preVCart.map(item => {
-        if(item.id=== product.id){
-          if(item.cantidad > 1){
-            return {...item,cantidad:item.cantidad-1}
-          }else{
-            return null
-          }
-        }else{
-          return item
-        }
-      }).filter(item=> item != null)
-    })
-
-  }
-
-  const vaciarCarrito=()=>{
-    setCart([])
-  }
-
-  
-  useEffect(()=>{
-      fetch("https://68209f05259dad2655ad17fd.mockapi.io/api/v1/productos")
-      .then((respuesta) => respuesta.json())
-      .then((datos) => {
-        setProducts(datos);
-        setCarga(false);
-      })
-      .catch((error) => {
-        console.error('Error:', error)
-        setCarga(false);
-        setError(true);
-      });
-    },[])
-
-    console.log("Esto es lo que tengo en el carrito", cart.length);
-
   return (
-  <> 
-  <Router>
-    <Routes>
-      <Route 
-            path="/" 
+    <>
+      
+        <Routes>
+          <Route
+            path="/"
             element={
-              <Home 
-                error = {error} 
-                carga={carga} 
-                products={products} 
-                cart={cart} 
-                vaciarCarrito={vaciarCarrito} 
-                addToCart={handleAddToCart} 
-                isCartOpen={isCartOpen} 
-                setCartOpen={setCartOpen} 
-                borrarProducto={borrarProducto}/>}/>
-      <Route
+              <Home
+                vaciarCarrito={vaciarCarrito}
+                isCartOpen={isCartOpen}
+                setCartOpen={setCartOpen}
+              />
+            }
+          />
+          <Route
             path="/productos"
             element={
               <ProductGallery
-                cart={cart}
-                products={products}
                 vaciarCarrito={vaciarCarrito}
-                addToCart={handleAddToCart}
                 isCartOpen={isCartOpen}
                 setCartOpen={setCartOpen}
-                borrarProducto={borrarProducto}
               />
             }
           />
 
-      <Route
+          <Route
             path="/productos/:id"
-            element={
-              <DetailsProduct
-                cart={cart}
-                products={products}
-              />
-            }
-          />    
-      <Route 
-            path="/contactus" 
-            element={
-            <ContactPage/>}
-            />
-      
-      <Route
-            path="/login"
-            element={
-              <Login/>
-            }
-            />
-      <Route
-            path="/admin" 
-            element={
-            <ProtectedPath isAuthenticated = {isAuthenticated}> <Admin/> </ProtectedPath>}
+            element={<DetailsProduct products={products} />}
           />
-      <Route path='*' element={<NotFound/>}/>
-    </Routes>
-  </Router>   
-  </>
-  )
+          <Route path="/contactus" element={<ContactPage />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedPath isAuthenticated={isAuthenticated}>
+                <Admin />
+              </ProtectedPath>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;

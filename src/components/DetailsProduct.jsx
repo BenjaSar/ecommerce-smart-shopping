@@ -1,4 +1,5 @@
-import React from "react";
+import Header from "./statics/Header";
+import Footer from "./statics/Footer";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,52 +29,60 @@ const DetailsProduct = ({ products }) => {
   };
 
   return (
-    <div className="container my-5">
-      <h1 className="mb-4">Product Details: {productId}</h1>
+    <>
+      <Header />
+      <div className="container-fluid py-4 py-md-5">
+        <div className="row justify-content-center">
+          <div className="col-12 col-lg-10 col-xl-8">
+            <h1 className="mb-4">Product Details: {productId}</h1>
 
-      {product ? (
-        <div className="card" style={{ maxWidth: "400px" }}>
-          <img
-            src={product.image}
-            className="card-img-top"
-            alt={product.name}
-          />
-          <img
-            src={product.imagen}
-            className="card-img-top"
-            alt={product.nombre}
-          />
-          <div className="card-body">
-            <h5 className="card-title">{product.nombre}</h5>
-            <p className="card-text">${product.precio}</p>
+            {product ? (
+              <div className="card" style={{ maxWidth: "400px" }}>
+                <img
+                  src={product.image}
+                  className="card-img-top"
+                  alt={product.name}
+                />
+                <img
+                  src={product.imagen}
+                  className="card-img-top"
+                  alt={product.nombre}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{product.nombre}</h5>
+                  <p className="card-text">${product.precio}</p>
+                </div>
+              </div>
+            ) : (
+              <div className="alert alert-danger" role="alert">
+                The product was not found.
+              </div>
+            )}
+
+            <div className="mt-4">
+              <button className="btn btn-secondary me-2" onClick={handleGoBack}>
+                Go Back
+              </button>
+              <button className="btn btn-primary" onClick={handleGoHome}>
+                Go Home
+              </button>
+            </div>
+
+            <ToastContainer
+              position="top-right"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              pauseOnHover
+              draggable
+              theme="colored"
+            />
           </div>
         </div>
-      ) : (
-        <div className="alert alert-danger" role="alert">
-          The product was not found.
-        </div>
-      )}
-
-      <div className="mt-4">
-        <button className="btn btn-secondary me-2" onClick={handleGoBack}>
-          Go Back
-        </button>
-        <button className="btn btn-primary" onClick={handleGoHome}>
-          Go Home
-        </button>
       </div>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme="colored"
-      />
-    </div>
+      <Footer />
+    </>
   );
 };
 

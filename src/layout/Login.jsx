@@ -1,70 +1,20 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
-
+import { useAuth } from "../context/AuthContext";
 //import 'dotenv/config';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const { setIsAuth } = useContext(CartContext);
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    //const userPath = process.env.REACT_APP_PATH_USERS_CREDENTIAL;
-    //console.log(userPath);
-    console.log("I'm in the login page");
-
-    let validationErrors = {};
-    if (!email) validationErrors.email = "Email is required";
-    if (!password) validationErrors.password = "Password is required";
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    try {
-      const res = await fetch("/data/users.json");
-      //const res = await fetch(userPath);
-      const users = await res.json();
-      const findUser = users.users.find(
-        (user) => user.email === email && user.password === password
-      );
-      console.log("This is the user found", findUser);
-
-      if (!findUser) {
-        setErrors({ email: "The credentials provided was not right" });
-        setEmail("");
-        setPassword("");
-        //navigate(0);
-      } else {
-        console.log("User role", findUser.role);
-        if (findUser.role === "admin") {
-          setIsAuth(true);
-          navigate("/admin"); 
-        } else {
-          navigate("/");
-        }
-      }
-    } catch (error) {
-      console.log("Error fetching users", error);
-      setErrors({
-        general: "Unable to load user data. Please try again later.",
-      });
-    }
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const {
+    errors,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    rememberMe,
+    setRememberMe,
+    togglePasswordVisibility,
+    handleSubmit,
+    isLoading,
+    showPassword,
+  } = useAuth();
 
   return (
     <div

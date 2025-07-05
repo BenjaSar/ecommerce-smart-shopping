@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
-const Product = ({ product, addToCart }) => {
+const Product = ({ product}) => {
+  const {handleAddToCart} = useContext(CartContext)
   const [cantidad, setCantidad] = useState(1);
   console.log(product.id);
   const navigate = useNavigate();
@@ -58,7 +60,7 @@ const Product = ({ product, addToCart }) => {
       </div>
       <button
         className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700"
-        onClick={() => addToCart({ ...product, cantidad: cantidad })}
+        onClick={() => handleAddToCart({ ...product, cantidad: cantidad })}
       >
         Add to cart
       </button>

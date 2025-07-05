@@ -1,14 +1,16 @@
 import React from "react";
 import Product from "./Product";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
-const ProductList = ({products, addToCart}) =>{
-    console.log("Estoy en el component de ProductList", products)
-    console.log("Esta es la propiedad", addToCart);
+const ProductList = () =>{
+    const {products, handleAddToCart} = useContext(CartContext)
+    console.log("Esta es la propiedad", handleAddToCart);
     return (
     <>
     <div className='galeria'>
             {products.map(product => (
-                <Product key={product.id}  product= {product} addToCart = {addToCart}/>))}
+                <Product key={product.id}  product= {product} addToCart = {handleAddToCart}/>))}
     </div>
     </>
     )
