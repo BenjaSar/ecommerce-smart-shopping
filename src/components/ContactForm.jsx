@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import "../styles/ContactForm.css"
-import smartshopLogo from '../assets/smartshop.svg'; 
 
 export default function ContactForm() {
   const [nombre, setNombre] = useState('');
@@ -19,7 +18,6 @@ export default function ContactForm() {
     <div className="contact-form-wrapper">
       <form className="contact-form" onSubmit={manejarFormulario}>
         {/*<img src={smartshopLogo} alt="SmartShop logo" className="contact-logo" />*/}
-
         <label htmlFor="nombre">Name</label>
         <input
           id="nombre"

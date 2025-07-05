@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
 dist
 dist-ssr
@@ -32,3 +33,10 @@ node_modules/
 
 # build
 **/build
+
+
+# Data and sensitive files
+public/data/
+*.log
+.env
+.env.*

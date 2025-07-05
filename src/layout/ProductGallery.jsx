@@ -1,18 +1,21 @@
 import React from 'react'
-import Header from '../components/Header'
+import { useContext } from 'react'
+import Header from '../components/statics/Header'
 import Nav from '../components/Nav'
-import Footer from '../components/Footer'
+import Footer from '../components/statics/Footer'
 import Product from '../components/Product'
+import { CartContext } from '../context/CartContext'
 
-const ProductGallery = ({products,cart, isCartOpen,setCartOpen,borrarProducto, vaciarCarrito, addToCart }) => {
+const ProductGallery = ({isCartOpen,setCartOpen }) => {
+  const {cart, products, carga, error, handleAddToCart, vaciarCarrito, handleDeleteFromCart} = useContext(CartContext)
   const cartCount = cart.length
   return (
     <>
       <Header />
-      <Nav cartItems={cart} vaciarCarrito={vaciarCarrito} cartCount={cartCount} isCartOpen={isCartOpen} setCartOpen={setCartOpen} borrarProducto={borrarProducto}/>
+      <Nav cartItems={cart} vaciarCarrito={vaciarCarrito} cartCount={cartCount} isCartOpen={isCartOpen} setCartOpen={setCartOpen} borrarProducto={handleDeleteFromCart}/>
       <div className='galeria'>
         {products.map(product => (
-          <Product key={product.id} product={product} addToCart={addToCart} />
+          <Product key={product.id} product={product} addToCart={handleAddToCart} />
         ))}
       </div>
       <Footer/>

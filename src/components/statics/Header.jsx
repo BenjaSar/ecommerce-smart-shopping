@@ -1,6 +1,6 @@
 import React from 'react'
-import '../styles/styles.css'
-import logo from '../assets/smartshop.svg'
+import '../../styles/styles.css'
+import logo from '../../assets/smartshop.svg'
 
 
 const Header = () => {

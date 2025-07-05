@@ -1,14 +1,18 @@
 import React,{useEffect,useState} from 'react'
-import Header from '../components/Header'
+import Header from '../components/statics/Header'
 import Nav from '../components/Nav'
-import Footer from '../components/Footer'
+import Footer from '../components/statics/Footer'
 import Main from '../components/Main'
 import ProductList from '../components/ProductList'
 import Cart from '../components/Cart'
 import loading from '../assets/loading.gif'
-import NotFound from '../components/NotFound'
+import NotFound from './NotFound'
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
 
-const Home = ({carga,error,products,cart,addToCart, isCartOpen,setCartOpen,borrarProducto, vaciarCarrito}) => {
+//const Home = ({carga,error,products,cart,addToCart, isCartOpen,setCartOpen,borrarProducto, vaciarCarrito}) => {    
+    const Home = ({addToCart, isCartOpen,setCartOpen}) => {    
+    const {cart, products, carga, error, handleAddToCart, vaciarCarrito, handleDeleteFromCart} = useContext(CartContext)
     const cartCount = cart.length
     console.log(cart.length)
 
@@ -19,10 +23,10 @@ const Home = ({carga,error,products,cart,addToCart, isCartOpen,setCartOpen,borra
   return (
     <>
       <Header/>
-      <Nav cartItems={cart} vaciarCarrito={vaciarCarrito} cartCount={cartCount} isCartOpen={isCartOpen} setCartOpen={setCartOpen} borrarProducto={borrarProducto}/>
+      <Nav cartItems={cart} vaciarCarrito={vaciarCarrito} cartCount={cartCount} isCartOpen={isCartOpen} setCartOpen={setCartOpen} borrarProducto={handleDeleteFromCart}/>
       <Main />
       {
-        carga ? <img src={loading} alt='loading' /> :
+      carga ? <img src={loading} alt='loading' /> :
       <ProductList cart={cart} products={products} addToCart={addToCart}/>
       }
       <Cart cartItems={cart}/>
