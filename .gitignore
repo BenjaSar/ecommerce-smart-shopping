@@ -36,7 +36,6 @@ node_modules/
 
 
 # Data and sensitive files
-public/data/
 *.log
 .env
 .env.*
