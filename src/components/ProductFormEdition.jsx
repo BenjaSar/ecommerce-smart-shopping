@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 
-const ProductFormEdition = ({ selectedProduct, onUpdateProduct }) => {
-  const [product, setProduct] = useState(selectedProduct);
+const ProductFormEdition = ({ productSelected, onUpdateProduct }) => {
+  const [product, setProduct] = useState(productSelected);
 
-  if(!product){
-    return<div>Loading...</div>
-  }
+  console.log(productSelected);
+
   useEffect(() => {
-  /*  setProduct(selectedProduct);
-  }, [selectedProduct]);*/
-  if (selectedProduct) {
-      setProduct(selectedProduct);
+  /*  setProduct(productSelected);
+  }, [productSelected]);*/
+  if (productSelected) {
+      setProduct(productSelected);
     }
-  }, [selectedProduct]);
+  }, [productSelected]);
 
   const onHandleChange = (e) => {
     const { name, value } = e.target;
