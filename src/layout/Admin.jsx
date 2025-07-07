@@ -79,14 +79,24 @@ const Admin = () => {
                   </div>
                 </div>
                 <div>
-                  <button className="btn btn-primary btn-sm me-2" onClick={()=>{
-                    setOpenEditor(true);
-                    setSeleccionado(product);
-                    console.log("Tratando de editar", product)
-                  }}>Edit</button>
-                  <button className="btn btn-danger btn-sm" onClick={()=>{
-                    deleteProduct(product);
-                  }}>Delete</button>
+                  <button
+                    className="btn btn-primary btn-sm me-2"
+                    onClick={() => {
+                      setOpenEditor(true);
+                      setSeleccionado(product);
+                      console.log("Tratando de editar", product);
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => {
+                      deleteProduct(product);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </div>
               </li>
             ))}
@@ -95,7 +105,12 @@ const Admin = () => {
       )}
 
       {open && <ProductForm onAgregar={addProduct} />}
-      {openEditor && <ProductFormEdition productSelected={seleccionado} onUpdateProduct = {editProduct}/>}
+      {openEditor && (
+        <ProductFormEdition
+          productSelected={seleccionado}
+          onUpdateProduct={editProduct}
+        />
+      )}
 
       <ToastContainer
         position="top-right"

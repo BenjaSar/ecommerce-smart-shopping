@@ -32,7 +32,7 @@ const Login = () => {
           background: "rgba(255, 255, 255, 0.95)",
           backdropFilter: "blur(20px)",
           borderRadius: "24px",
-          maxWidth: "440px",
+          maxWidth: "1200px",
           width: "100%",
           overflow: "hidden",
         }}
