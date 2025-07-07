@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }) => {
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      setIsLoading(false);
       return;
     }
 
@@ -48,20 +49,28 @@ export const AuthProvider = ({ children }) => {
       console.log("This is the user found", findUser);
 
       if (!findUser) {
-        setErrors({ email: "The credentials provided was not right" });
+        let errorMessage = "The user is not found";
+
+        if (!findUser && email.trim() !== "" && password.trim() !== "") {
+          errorMessage = "Invalid credentials";
+        }
+        setErrors({ email: errorMessage });
         setEmail("");
         setPassword("");
         setIsLoading(false);
-        //navigate(0);
       } else {
-        console.log("User role", findUser.role.toLowerCase());
         if (findUser.role.toLowerCase() === "admin") {
           //localStorage.setItem("isAuth", "true");
           setisAuth(true);
           navigate("/admin");
+          setEmail("");
+          setPassword("");
+          alert("Login successful! Redirecting to admin dashboard...");
         } else {
           //localStorage.setItem("isAuth", "true");
+          setisAuth(true);
           navigate("/");
+          alert("Login successful! Redirecting to user dashboard...");
         }
       }
     } catch (error) {
@@ -69,7 +78,13 @@ export const AuthProvider = ({ children }) => {
       setErrors({
         general: "Unable to load user data. Please try again later.",
       });
+    } finally{
+      setIsLoading(false);
     }
+  };
+
+  const handleGoHome = () => {
+    navigate("/");
   };
 
   const togglePasswordVisibility = () => {
@@ -88,6 +103,7 @@ export const AuthProvider = ({ children }) => {
     handleSubmit,
     isLoading,
     showPassword,
+    handleGoHome,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

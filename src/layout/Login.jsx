@@ -14,6 +14,7 @@ const Login = () => {
     handleSubmit,
     isLoading,
     showPassword,
+    handleGoHome,
   } = useAuth();
 
   return (
@@ -187,6 +188,7 @@ const Login = () => {
                   type="button"
                   className="btn position-absolute top-50 end-0 translate-middle-y me-2"
                   onClick={togglePasswordVisibility}
+                  disabled={isLoading}
                   style={{
                     border: "none",
                     background: "transparent",
@@ -325,6 +327,58 @@ const Login = () => {
                     />
                   </svg>
                   Sign In
+                </div>
+              )}
+            </button>
+            <button
+              type="submit"
+              className="btn btn-lg w-100 text-white fw-semibold"
+              disabled={isLoading}
+              onClick={handleGoHome}
+              style={{
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                border: "none",
+                borderRadius: "16px",
+                padding: "16px",
+                fontSize: "1.1rem",
+                transition: "all 0.3s ease",
+                boxShadow: "0 4px 15px rgba(102, 126, 234, 0.3)",
+                display: "-ms-inline-flexbox",
+                marginLeft: "4rem",
+              }}
+              onMouseEnter={(e) => {
+                if (!isLoading) {
+                  e.target.style.transform = "translateY(-2px)";
+                  e.target.style.boxShadow =
+                    "0 8px 25px rgba(102, 126, 234, 0.4)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = "translateY(0)";
+                e.target.style.boxShadow =
+                  "0 4px 15px rgba(102, 126, 234, 0.3)";
+              }}
+            >
+              {isLoading ? (
+                <div className="d-flex align-items-center justify-content-center">
+                  <div
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                  >
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                  Returning...
+                </div>
+              ) : (
+                <div className="d-flex align-items-center justify-content-center">
+                  <svg
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                    className="me-2"
+                  ></svg>
+                  Go Home
                 </div>
               )}
             </button>
