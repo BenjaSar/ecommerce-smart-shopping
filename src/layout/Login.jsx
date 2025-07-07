@@ -34,7 +34,7 @@ const Login = () => {
           backdropFilter: "blur(20px)",
           borderRadius: "24px",
           maxWidth: "1200px",
-          width: "100%",
+          width: "100vw",
           overflow: "hidden",
         }}
       >

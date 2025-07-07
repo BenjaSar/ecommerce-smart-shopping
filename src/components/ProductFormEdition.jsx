@@ -70,4 +70,4 @@ const ProductFormEdition = ({ productSelected, onUpdateProduct }) => {
   );
 };
 
-export default ProductFormEdition;
+export default ProductFormEdition

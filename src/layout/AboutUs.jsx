@@ -29,7 +29,7 @@ const Aboutus = () => {
   const mainStyles = {
     flex: 1,
     padding: '4rem 2rem',
-    maxWidth: '1800px',
+    maxWidth: '100vw',
     margin: '0 auto',
     width: 'auto',
   };

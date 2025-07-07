@@ -6,7 +6,7 @@ body {
     margin: 0 auto;
     min-height: 100vh;
     box-sizing: border-box;
-    width: 1200;
+    max-width: 1800px;
 }
 
 textarea {
@@ -70,7 +70,7 @@ textarea {
     font-weight: 600;
     font-size: 2rem;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    width: 100%;
+    width: 92vw;
     border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     justify-content: center;
@@ -97,7 +97,7 @@ textarea {
 
 .contact-form-wrapper {
     height: 100vh;
-    width: 100vw;
+    width: 92vw;
     background: linear-gradient(135deg, #1e2a4a 0%, #3fb984 100%);
     display: flex;
     justify-content: center;

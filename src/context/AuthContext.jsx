@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }) => {
       setErrors({
         general: "Unable to load user data. Please try again later.",
       });
-    } finally{
+    } finally {
       setIsLoading(false);
     }
   };
