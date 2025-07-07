@@ -12,6 +12,7 @@ import { AdminContext } from "./context/AdminContext";
 import ProtectedPath from "./auth/ProtectedPath";
 import Admin from "./layout/Admin";
 import DetailsProduct from "./components/DetailsProduct";
+import Aboutus from "./layout/AboutUs";
 //``
 
 //Array de productos
@@ -30,46 +31,45 @@ function App() {
 
   return (
     <>
-      
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                vaciarCarrito={vaciarCarrito}
-                isCartOpen={isCartOpen}
-                setCartOpen={setCartOpen}
-              />
-            }
-          />
-          <Route
-            path="/productos"
-            element={
-              <ProductGallery
-                vaciarCarrito={vaciarCarrito}
-                isCartOpen={isCartOpen}
-                setCartOpen={setCartOpen}
-              />
-            }
-          />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/aboutus" element={<Aboutus />}></Route>
+        <Route
+          path="/"
+          element={
+            <Home
+              vaciarCarrito={vaciarCarrito}
+              isCartOpen={isCartOpen}
+              setCartOpen={setCartOpen}
+            />
+          }
+        />
+        <Route
+          path="/productos"
+          element={
+            <ProductGallery
+              vaciarCarrito={vaciarCarrito}
+              isCartOpen={isCartOpen}
+              setCartOpen={setCartOpen}
+            />
+          }
+        />
 
-          <Route
-            path="/productos/:id"
-            element={<DetailsProduct products={products} />}
-          />
-          <Route path="/contactus" element={<ContactPage />} />
-
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedPath isAuthenticated={isAuthenticated}>
-                <Admin />
-              </ProtectedPath>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Route
+          path="/productos/:id"
+          element={<DetailsProduct products={products} />}
+        />
+        <Route path="/contactus" element={<ContactPage />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedPath isAuthenticated={isAuthenticated}>
+              <Admin />
+            </ProtectedPath>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }

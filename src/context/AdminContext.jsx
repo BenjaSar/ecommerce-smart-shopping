@@ -15,7 +15,6 @@ export const AdminProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const urlapi = "https://68595f28138a18086dfe2d34.mockapi.io/products";
-  //id, price, name, description
 
   useEffect(() => {
     const loadingToast = toast.loading("Loading products...");
@@ -118,6 +117,11 @@ export const AdminProvider = ({ children }) => {
       loadProduct();
       const updatedProduct = await response.json();
       console.log("This are the data in the edit function", updatedProduct);
+      Swal.fire({
+          title: "UPDATING PRODUCT",
+          text: "The product was updated succesfully!",
+          icon: "success",
+        });
 
       /*setProducts((prevProducts) =>
         prevProducts.map((p) => (p.id === product.id ? updatedProduct : p))
